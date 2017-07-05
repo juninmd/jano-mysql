@@ -23,9 +23,9 @@ module.exports = (connection) => {
                 });
             });
         },
-        executeProcedure: (rm, array) => {
+        executeProcedure: (rm) => {
             return new Promise((resolve, reject) => {
-                connection.query('CALL ?? (?)', [rm.package, array], (err, result) => {
+                connection.query('CALL ?? (?)', [rm.database.procedure, rm.database.parametros], (err, result) => {
                     if (err) {
                         connection.end(() => {
                             return reject(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", err.message));
@@ -46,9 +46,9 @@ module.exports = (connection) => {
                 });
             });
         },
-        readProcedure: (rm, array, ) => {
+        readProcedure: (rm) => {
             return new Promise((resolve, reject) => {
-                connection.query('CALL ?? (?)', [rm.package, array], (err, result) => {
+                connection.query('CALL ?? (?)', [rm.database.procedure, rm.database.parametros], (err, result) => {
                     if (err) {
                         connection.end(() => {
                             return resolve(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", err.message));
@@ -62,7 +62,7 @@ module.exports = (connection) => {
                 });
             });
         },
-        execute: (rm, table, object, ) => {
+        executeObject: (rm, table, object, ) => {
             return new Promise((resolve, reject) => {
                 connection.query(table, object, (err, info) => {
                     if (err) {

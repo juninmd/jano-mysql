@@ -16,8 +16,8 @@ module.exports = {
     setError: (mu, statusCode, userMessage, developerMessage) => {
         mu.content = null;
         mu.statusCode = statusCode;
-        rm.isSuccess = statusCode >= 200 || statusCode < 300;
-        rm.message = {
+        mu.isSuccess = statusCode >= 200 || statusCode < 300;
+        mu.message = {
             developerMessage: developerMessage,
             userMessage: userMessage
         };

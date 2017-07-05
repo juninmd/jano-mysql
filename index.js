@@ -1,36 +1,50 @@
 const mu = require('./messageUtil');
 const mysql = require('mysql');
-const { promisify } = require('util');
 
 module.exports = {
     executeString: (connectionString, query) => {
-        let newMu = mu.new(200, null, null, null, null, null);
-        return MySqlInit(connectionString).executeString(rm, query);
+        return executeString(connectionString, query);
     },
-    execute: (connectionString, table, object) => {
-        let newMu = mu.new(200, null, null, null, table, null);
-        return MySqlInit(connectionString).execute(rm, table, object)
+    executeObject: (connectionString, table, object) => {
+        return executeObject(connectionString, table, object);
     },
     executeProcedure: (connectionString, procedure, array) => {
-        let newMu = mu.new(200, null, null, array.toString(), null, procedure);
-        return MySqlInit(connectionString).executeProcedure(rm, array);
+        return executeProcedure(connectionString, procedure, array);
     },
     readProcedure: (connectionString, procedure, array) => {
-        let newMu = mu.new(200, null, null, array.toString(), null, procedure);
-        return MySqlInit(connectionString).readProcedure(rm, array);
+        return readProcedure(connectionString, procedure, array);
     },
     beginTransaction: (connectionString) => {
         return beginTransaction(connectionString);
     },
     executeTransaction: (connection, table, object) => {
-        return new Promise((resolve, reject) => {
-            let newmu = mu.new(200, '', '', object, table);
-            return require("./coreMysql.js")(connection).executeTransaction(rm, table, object);
-        });
+        return executeTransaction(connection, table, object);
     },
 }
 
+async function executeString(connectionString, query) {
+    let newMu = mu.new(200, null, null, null, null, null);
+    let connection = await MySqlInit(connectionString);
+    return await require("./coreMysql.js")(connection).executeString(newMu, query);
+}
 
+async function executeObject(connectionString, table, object) {
+    let newMu = mu.new(200, null, null, null, table, null);
+    let connection = await MySqlInit(connectionString);
+    return require("./coreMysql.js")(connection).executeObject(newMu, table, object)
+}
+
+async function executeProcedure(connectionString, procedure, array) {
+    let newMu = mu.new(200, null, null, array, null, procedure);
+    let connection = await MySqlInit(connectionString);
+    return require("./coreMysql.js")(connection).executeProcedure(newMu);
+}
+
+async function readProcedure(connectionString, procedure, array) {
+    let newMu = mu.new(200, null, null, array, null, procedure);
+    let connection = await MySqlInit(connectionString);
+    return require("./coreMysql.js")(connection).readProcedure(newMu, array);
+}
 
 async function beginTransaction(connectionString) {
     let connection = await MySqlInit(connectionString);
@@ -41,6 +55,12 @@ async function beginTransaction(connectionString) {
     });
 }
 
+async function executeTransaction(connection, table, object) {
+    return new Promise((resolve, reject) => {
+        let newmu = mu.new(200, '', '', object, table);
+        return require("./coreMysql.js")(connection).executeTransaction(newMu, table, object);
+    });
+}
 
 function MySqlInit(connectionString) {
     let connection = mysql.createConnection(connectionString);

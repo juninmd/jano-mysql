@@ -1,7 +1,9 @@
 # Jano  MYSQL
 
 ## Exemplo de utilidades
-    const mysql = require('jano-mysql');  
+    // Carregue a biblioteca
+    const mysql = require('jano-mysql');
+    // Carregue as configurações do banco de dados  
     const webconfig = require('./webconfig.js');
 
     async function minhaFuncaoLegal() {

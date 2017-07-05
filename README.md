@@ -24,3 +24,6 @@
         let procedure = await mysql.readProcedure(webconfig.dataConfig.MYSQL, "SP_MOTIVO", [1]);
         console.log(procedure);
     };
+
+## Por que usar Jano MYSQL?
+  R. Seu código ficará muito mais belo e simples com o uso de Promises + Async Await

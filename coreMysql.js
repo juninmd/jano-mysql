@@ -1,5 +1,4 @@
-const mu = require('../messageUtil');
-const mysql = require('mysql');
+const mu = require('./messageUtil');
 
 module.exports = (connection) => {
     return {
@@ -14,10 +13,10 @@ module.exports = (connection) => {
                     else {
                         connection.end(() => {
                             if (rows.length == 0) {
-                                return resolve(null, { metaData: [], content: [] });
+                                return resolve({ metaData: [], content: [] });
                             }
                             else {
-                                return resolve(null, { metaData: fields, content: rows });
+                                return resolve({ metaData: fields, content: rows });
                             }
                         });
                     }
@@ -36,7 +35,7 @@ module.exports = (connection) => {
                         connection.commit(() => {
                             connection.end(() => {
                                 if (result.affectedRows == 1) {
-                                    return resolve(null, { metaData: [], content: { retorno: 'OK', Id: result.insertId } });
+                                    return resolve({ metaData: [], content: { retorno: 'OK', Id: result.insertId } });
                                 }
                                 else {
                                     return resolve(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", "O registro não foi adicionado."));
@@ -57,7 +56,7 @@ module.exports = (connection) => {
                     }
                     else {
                         connection.end(() => {
-                            return resolve(null, { content: result[0] });
+                            return resolve({ content: result[0] });
                         });
                     }
                 });
@@ -77,7 +76,7 @@ module.exports = (connection) => {
                                 return resolve(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", "Registro não foi inserido."));
                             }
                             else {
-                                return resolve(null, { metaData: [], content: info.insertId });
+                                return resolve({ metaData: [], content: info.insertId });
                             }
                         })
                     }
@@ -95,7 +94,7 @@ module.exports = (connection) => {
                             return resolve(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", "Registro não foi inserido."));
                         }
                         else {
-                            return resolve(null, { metaData: [], content: info.insertId });
+                            return resolve({ metaData: [], content: info.insertId });
                         }
                     }
                 });

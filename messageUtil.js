@@ -1,5 +1,5 @@
 module.exports = {
-    new: (statusCode, userMessage, developerMessage, parametros, tabela) => {
+    new: (statusCode, userMessage, developerMessage, parametros, tabela, procedure) => {
         return {
             statusCode: statusCode,
             message: {
@@ -8,7 +8,8 @@ module.exports = {
             },
             database: {
                 parametros: parametros,
-                tabela: tabela
+                tabela: tabela,
+                procedure: procedure
             }
         };
     },

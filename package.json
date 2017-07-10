@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/juninmd/jano-mysql.git"
   },
-  "author": "",
+  "author": "Antonio Carlos",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/juninmd/jano-mysql/issues"

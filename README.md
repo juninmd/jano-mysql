@@ -1,29 +1,34 @@
 # Jano  MYSQL
 
-## Exemplo de utilidades
+## Exemplo de uso
     // Carregue a biblioteca
-    const mysql = require('jano-mysql');
-    // Carregue as configurações do banco de dados  
-    const webconfig = require('./webconfig.js');
+    // Passando no construtor as configurações do banco de dados  
+    const mysql = require('jano-mysql')({
+        host: 'localhost',
+        user: 'root',
+        database: 'meubanco',
+        password: '',
+        port: 3306
+    });
 
     async function minhaFuncaoLegal() {
         // Inicia uma conexão (possibilita Transactions)
-        let conexao = await mysql.beginTransaction(webconfig.dataConfig.MYSQL);
+        let conexao = await mysql.beginTransaction();
         
         // Encerra a conexão (paramêtro não obrigatório)
         // true = commit | false = rollback
         let fechou = await conexao.endConnection(true);
 
         // Query livre, digite o que quiser.
-        let motivos = await mysql.executeString(webconfig.dataConfig.MYSQL, 'SELECT * FROM motivo');
+        let motivos = await mysql.executeString('SELECT * FROM motivo');
         console.log(motivos.content);
 
         // Insert / Update de registro de tabelas
-        let insert = await mysql.executeObject(webconfig.dataConfig.MYSQL, "INSERT INTO motivo SET ?", { DESCRICAO: 'teste' });
+        let insert = await mysql.executeObject("INSERT INTO motivo SET ?", { DESCRICAO: 'teste' });
         console.log(insert);
 
         // Recomendado para retornar select de procedure
-        let procedure = await mysql.readProcedure(webconfig.dataConfig.MYSQL, "SP_MOTIVO", [1]);
+        let procedure = await mysql.readProcedure("SP_MOTIVO", [1]);
         console.log(procedure);
     };
 

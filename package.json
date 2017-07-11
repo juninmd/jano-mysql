@@ -1,6 +1,6 @@
 {
   "name": "jano-mysql",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Classe que facilita a conexão com o banco de dados MYSQL",
   "main": "index.js",
   "scripts": {

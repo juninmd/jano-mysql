@@ -1,5 +1,14 @@
 # jano-mysql
 
+[![NPM Version](https://img.shields.io/npm/v/jano-mysql.svg)](https://npmjs.org/package/jano-mysql)
+[![NPM Downloads](https://img.shields.io/npm/dm/jano-mysql.svg)](https://npmjs.org/package/jano-mysql)
+[![GitHub issues](https://img.shields.io/github/issues/juninmd/jano-mysql.svg)](https://github.com/juninmd/jano-mysql/issues)
+[![GitHub forks](https://img.shields.io/github/forks/juninmd/jano-mysql.svg)](https://github.com/juninmd/jano-mysql/network)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/juninmd/jano-mysql.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+
+[downloads-image]: 
+[downloads-url]: 
+
 ## [EN]  
 
 It is a library that uses the `mysql` driver to keep code clean, simple, organized and with Promises.

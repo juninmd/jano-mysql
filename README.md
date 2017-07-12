@@ -4,6 +4,7 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/jano-mysql.svg)](https://npmjs.org/package/jano-mysql)
 [![GitHub issues](https://img.shields.io/github/issues/juninmd/jano-mysql.svg)](https://github.com/juninmd/jano-mysql/issues)
 [![GitHub forks](https://img.shields.io/github/forks/juninmd/jano-mysql.svg)](https://github.com/juninmd/jano-mysql/network)
+[![Build Status](https://travis-ci.org/juninmd/jano-mysql.svg?branch=master)](https://travis-ci.org/juninmd/jano-mysql)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/juninmd/jano-mysql.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
 
 [downloads-image]: 

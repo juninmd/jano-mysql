@@ -15,6 +15,10 @@
   "bugs": {
     "url": "https://github.com/juninmd/jano-mysql/issues"
   },
+  "keywords": [
+    "mysql",
+    "Promise"
+  ],
   "homepage": "https://github.com/juninmd/jano-mysql#readme",
   "dependencies": {
     "mysql": "^2.13.0"

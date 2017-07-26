@@ -34,7 +34,7 @@ module.exports = (connectionString) => {
         },
         executeTransaction: async (connection, query, object) => {
             return new Promise((resolve, reject) => {
-                let newmu = mu.new(200, '', '', object, query);
+                let newMu = mu.new(200, '', '', object, query);
                 return require("./coreMysql.js")(connection).executeTransaction(newMu, query, object);
             });
         }

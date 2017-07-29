@@ -35,10 +35,10 @@ module.exports = (connection) => {
                         connection.commit(() => {
                             connection.end(() => {
                                 if (result.affectedRows == 1) {
-                                    return resolve({ metaData: [], content: { retorno: 'OK', Id: result.insertId } });
+                                    return resolve({ metaData: info, content: { retorno: 'OK', Id: result.insertId } });
                                 }
                                 else {
-                                    return resolve(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", "O registro não foi adicionado."));
+                                    return reject(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", "O registro não foi adicionado."));
                                 }
                             });
                         });
@@ -51,7 +51,7 @@ module.exports = (connection) => {
                 connection.query('CALL ?? (?)', [rm.database.procedure, rm.database.parametros], (err, result) => {
                     if (err) {
                         connection.end(() => {
-                            return resolve(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", err.message));
+                            return reject(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", err.message));
                         });
                     }
                     else {
@@ -73,10 +73,10 @@ module.exports = (connection) => {
                     else {
                         connection.end(() => {
                             if (info.affectedRows == 0) {
-                                return resolve(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", "Registro não foi inserido."));
+                                return reject(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", "Registro não foi inserido."));
                             }
                             else {
-                                return resolve({ metaData: [], content: info.insertId });
+                                return resolve({ metaData: info, content: info.insertId });
                             }
                         })
                     }
@@ -87,14 +87,14 @@ module.exports = (connection) => {
             return new Promise((resolve, reject) => {
                 connection.query(table, object, (err, info) => {
                     if (err) {
-                        return resolve(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", err.message));
+                        return reject(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", err.message));
                     }
                     else {
                         if (info.affectedRows == 0) {
-                            return resolve(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", "Registro não foi inserido."));
+                            return reject(mu.setError(rm, 500, "Ocorreu um problema com essa operação, tente novamente.", "Registro não foi inserido."));
                         }
                         else {
-                            return resolve({ metaData: [], content: info.insertId });
+                            return resolve({ metaData: info, content: info.insertId });
                         }
                     }
                 });

@@ -1,6 +1,6 @@
 {
   "name": "jano-mysql",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Library that uses the `mysql` driver to keep code clean, simple, organized and with Promises",
   "main": "index.js",
   "scripts": {
